@@ -20,13 +20,14 @@ class StoreInsightsJobTest extends TestCase
         $job = new StoreInsightsJob($insights);
         $job->handle();
 
-        $username = $this->insights->account->username;
+        $username = $insights->account->username;
         $key = `insights:{$insights->platform}:{$username}:latest:account`;
-        $keyContent = Redis::get($key);
+        $this->assertNotNull(Redis::get($key));
 
+        $key = `insights:{$insights->platform}:{$username}:latest:content`;
+        $this->assertNotNull(Redis::get($key));
 
-        $metrics = Metrics::makeFromMedias($this->insights->medias);
-
-
+        $key = `insights:{$insights->platform}:{$username}:content:metrics`;
+        $this->assertNotNull(Redis::get($key));
     }
 }

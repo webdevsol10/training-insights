@@ -4,6 +4,9 @@ services:
   # Docker Image: https://hub.docker.com/r/vinelab/nginx-php
   app:
     image: vinelab/nginx-php:7.4
+#    restart: always
+    command:
+      docker/app-setup.sh
     ports:
       - ${DOCKER_HOST_PHP_PORT:-8888}:80
     volumes:
@@ -15,3 +18,8 @@ services:
     ports:
       - ${DOCKER_HOST_RABBITMQ_PORT:-5673}:5672
       - ${DOCKER_HOST_RABBITMQ_ADMIN_PORT:-15673}:15672
+
+  redis:
+    image: redis
+    expose:
+      - 6379

@@ -43,10 +43,9 @@ class Metrics
         }
 
         $videos = $medias->filter(fn($media) => MediaType::VIDEO() === $media->type);
-
-        $videoViews = $videos->map(fn($video) => $video->video_views);
-        $likes = $medias->map(fn($media) => $media->likes);
-        $comments = $medias->map(fn($media) => $media->comments);
+        $videoViews = $videos->reduce(fn($carry, $video) => $carry + $video->video_views) ?? 0;
+        $likes = $medias->reduce(fn($carry, $media) => $carry + $media->likes);
+        $comments = $medias->reduce(fn($carry, $media) => $carry + $media->comments);
 
         return new self($likes / $count,$comments / $count,$videoViews / $count);
     }
