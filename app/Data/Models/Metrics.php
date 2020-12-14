@@ -3,11 +3,51 @@
 
 namespace App\Data\Models;
 
+use App\Data\Collections\MediaCollection;
+use App\Data\Enums\MediaType;
 
 class Metrics
 {
-    public static function makeFromMedias()
-    {
+    /**
+     * @var float
+     */
+    public float $avgLikes;
+    /**
+     * @var float
+     */
+    public float $avgComments;
+    /**
+     * @var float
+     */
+    public float $avgVideoViews;
 
+
+    public function __construct(float $avgLikes, float $avgComments, float $avgVideoViews)
+    {
+        $this->avgLikes = $avgLikes;
+        $this->avgComments = $avgComments;
+        $this->avgVideoViews = $avgVideoViews;
+    }
+
+    /**
+     * @param MediaCollection $medias
+     * @return Metrics
+     * @throws \Exception
+     */
+    public static function makeFromMedias(MediaCollection $medias): Metrics
+    {
+        $count = $medias->count();
+
+        if ($count === 0) {
+            throw new \Exception('Media collection is empty');
+        }
+
+        $videos = $medias->filter(fn($media) => MediaType::VIDEO() === $media->type);
+
+        $videoViews = $videos->map(fn($video) => $video->video_views);
+        $likes = $medias->map(fn($media) => $media->likes);
+        $comments = $medias->map(fn($media) => $media->comments);
+
+        return new self($likes / $count,$comments / $count,$videoViews / $count);
     }
 }

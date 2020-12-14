@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    phpinfo();
+    dump('fds');echo 'web.php:17'; exit;
     return view('welcome');
 });

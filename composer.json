@@ -15,7 +15,10 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "lucidarch/lucid": "^1.0",
-        "vinelab/bowler": "^0.7.0"
+        "myclabs/php-enum": "^1.7",
+        "vinelab/bowler": "^0.7.0",
+        "ext-json": "*",
+        "ext-http": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

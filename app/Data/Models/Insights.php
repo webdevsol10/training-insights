@@ -45,7 +45,7 @@ class Insights implements JsonSerializable
         );
     }
 
-    public static function makeFromQueueMessage($createdAt, Account $account, MediaCollection $medias): self
+    public static function makeFromQueueMessage(int $createdAt, Account $account, MediaCollection $medias): self
     {
         return new self(
             $account->username,
