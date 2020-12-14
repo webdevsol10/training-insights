@@ -49,29 +49,6 @@ class Media implements Arrayable
         $this->video_views = $video_views;
     }
 
-    /**
-     * @param ScraperMedia $data
-     *
-     * @return static
-     * @throws InvalidMediaTypeException
-     */
-    public static function makeFromScraper(ScraperMedia $data): self
-    {
-        return new self(
-            $data->getId(),
-            $data->getShortCode(),
-            static::buildTypeFromString($data->getType()),
-            $data->getLink(),
-            $data->getImageThumbnailUrl(),
-            $data->isAd(),
-            (new DateTime)->setTimestamp($data->getCreatedTime()),
-            $data->getCaption(),
-            $data->getLikesCount(),
-            $data->getCommentsCount(),
-            $data->getVideoViews()
-        );
-    }
-
     public static function makeFromArray(array $media)
     {
         return new self(

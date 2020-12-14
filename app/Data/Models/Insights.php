@@ -33,18 +33,6 @@ class Insights implements JsonSerializable
         $this->medias = $medias;
     }
 
-    public static function makeFromScraper(Account $account, MediaCollection $medias): self
-    {
-        return new self(
-            $account->username,
-            $account->id,
-            Source::SCRAPER(),
-            time(),
-            $account,
-            $medias
-        );
-    }
-
     public static function makeFromQueueMessage(int $createdAt, Account $account, MediaCollection $medias): self
     {
         return new self(

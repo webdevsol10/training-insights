@@ -29,17 +29,6 @@ class Account
         $this->username = $username;
     }
 
-    public static function makeFromScraper(ScraperAccount $raw): self
-    {
-        return new self(
-            $raw->getId(),
-            $raw->getUsername(),
-            $raw->getFollowsCount(),
-            $raw->getFollowedByCount(),
-            $raw->getMediaCount()
-        );
-    }
-
     public static function makeFromArray(array $account)
     {
         return new self(
