@@ -13,8 +13,6 @@ class InstagramInsightsHandler
     {
         $storeFeature = new StoreContentFeature($msg);
         $storeFeature->handle();
-        dump($msg);echo 'InstagramInsightsHandler.php:11'; exit;
-
     }
 
     public function handleError($e, $broker)

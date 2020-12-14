@@ -9,21 +9,30 @@ use Illuminate\Http\Request;
 
 class StoreContentFeature extends Feature
 {
+    /**
+     * @var array
+     */
+    private $message;
+
+    /**
+     * StoreContentFeature constructor.
+     * @param array $message
+     */
     public function __construct(array $message)
     {
-
+        $this->message = $message;
     }
 
-    public function handle($message)
+    public function handle()
     {
         // validate data
-        $isValidMessage = $this->run(ValidateQueueMessageJob::class, [
-            'message' => $message
+        $insightsModel = $this->run(ValidateQueueMessageJob::class, [
+            'message' => $this->message
         ]);
 
-        if ($isValidMessage) {
+        if ($insightsModel) {
             $this->run(StoreInsightsJob::class, [
-                'message' => $message
+                'insights' => $insightsModel
             ]);
         }
     }

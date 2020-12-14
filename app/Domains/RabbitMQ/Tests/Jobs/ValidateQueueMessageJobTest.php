@@ -12,8 +12,8 @@ class ValidateQueueMessageJobTest extends TestCase
         $rawMessage = unserialize(file_get_contents(base_path('tests/resources/insights.txt')));
 
         $job = new ValidateQueueMessageJob($rawMessage);
-        $valid = $job->handle();
+        $insights = $job->handle();
 
-        $this->assertTrue($valid);
+        $this->assertNotNull($insights);
     }
 }

@@ -2,18 +2,24 @@
 
 namespace App\Domains\Redis\Jobs;
 
+use App\Data\Models\Insights;
 use Lucid\Units\Job;
 
 class StoreInsightsJob extends Job
 {
     /**
+     * @var Insights
+     */
+    private Insights $insights;
+
+    /**
      * Create a new job instance.
      *
-     * @return void
+     * @param Insights $insights
      */
-    public function __construct()
+    public function __construct(Insights $insights)
     {
-        //
+        $this->insights = $insights;
     }
 
     /**
@@ -23,6 +29,9 @@ class StoreInsightsJob extends Job
      */
     public function handle()
     {
-        //
+
+        //insights:{platform}:{username}:latest:account
+        //insights:{platform}:{username}:latest:content
+
     }
 }
