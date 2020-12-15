@@ -28,7 +28,8 @@ class ValidateQueueMessageJob extends Job
     /**
      * Execute the job.
      *
-     * @return void
+     * @return bool
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function handle(): bool
     {

@@ -41,15 +41,13 @@ class InsightsRepository
     }
 
     /**
-     * @param MediaCollection $medias
+     * @param Metrics $metrics
      * @param string $platform
      * @param string $username
      * @return mixed
-     * @throws \Exception
      */
-    public function storeMediasMetrics(MediaCollection $medias, string $platform, string $username)
+    public function storeMediasMetrics(Metrics $metrics, string $platform, string $username)
     {
-        $metrics = Metrics::makeFromMedias($medias);
         $key = "insights:{$platform}:{$username}:content:metrics";
         return Redis::set($key, json_encode([
             "avg_likes" => $metrics->avgLikes,

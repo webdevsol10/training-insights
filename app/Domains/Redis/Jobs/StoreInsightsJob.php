@@ -45,6 +45,8 @@ class StoreInsightsJob extends Job
         $username = $account->username;
         $insightsRepository->storeAccount($account, $insights->platform);
         $insightsRepository->storeMedias($medias, $insights->platform, $username);
-        $insightsRepository->storeMediasMetrics($medias, $insights->platform, $username);
+
+        $metrics = Metrics::makeFromMedias($medias);
+        $insightsRepository->storeMediasMetrics($metrics, $insights->platform, $username);
     }
 }
