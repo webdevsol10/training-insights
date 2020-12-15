@@ -3,10 +3,7 @@ version: '3.7'
 services:
   # Docker Image: https://hub.docker.com/r/vinelab/nginx-php
   app:
-    build: docker/
-#    image: vinelab/nginx-php:7.4
-#    restart: always
-
+    build: docker/app
     ports:
       - ${DOCKER_HOST_PHP_PORT:-8888}:80
     volumes:

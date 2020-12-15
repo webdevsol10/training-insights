@@ -42,7 +42,9 @@ class ValidateQueueMessageJob extends Job
             "insights.account" => "required|array",
             "insights.content" => "required|array",
         ]);
+            //->validate();
 
+//        return true;
         if ($validator->fails()) {
             return null;
         } else {
