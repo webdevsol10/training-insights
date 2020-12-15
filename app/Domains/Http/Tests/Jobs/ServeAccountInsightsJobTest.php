@@ -9,12 +9,9 @@ class ServeAccountInsightsJobTest extends TestCase
 {
     public function test_serve_account_insights_job()
     {
+        $job = new ServeAccountInsightsJob('instagram', 'third_eye_thirst');
+        $data = $job->handle();
 
-        $job = new ServeAccountInsightsJob([
-            'handle' => 'asdsad',
-            'platform' => 'instagram'
-        ]);
-        $job->handle();
-
+        $this->assertEquals('{"following":1348243,"followers":445,"media_count":2234}', $data);
     }
 }

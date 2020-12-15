@@ -32,21 +32,7 @@ class ServeAccountInsightsJob extends Job
      */
     public function handle()
     {
-//        dump($this->handle);echo 'ServeAccountInsightsJob.php:29'; exit;
-
         $key = "insights:{$this->platform}:{$this->handle}:latest:account";
-        $rawData = '{"one": 12321}';
-//        $rawData = Redis::get($key);
-
-        if ($rawData) {
-            return $rawData;
-        } else {
-            return '';
-        }
-
-        return [
-            'one' => 213,
-            'two' => 232
-        ];
+        return Redis::get($key) ?? '';
     }
 }

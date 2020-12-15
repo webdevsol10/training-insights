@@ -10,7 +10,7 @@ use Lucid\Units\Controller;
 
 class InsightsController extends Controller
 {
-    public function account(Request $request, $handle)
+    public function account($handle)
     {
         return $this->serve(ServeAccountInsightsFeature::class, [
             'handle' => $handle,
