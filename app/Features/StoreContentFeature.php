@@ -26,14 +26,12 @@ class StoreContentFeature extends Feature
     public function handle()
     {
         // validate data
-        $insightsModel = $this->run(ValidateQueueMessageJob::class, [
+        $this->run(ValidateQueueMessageJob::class, [
             'message' => $this->message
         ]);
 
-        if ($insightsModel) {
-            $this->run(StoreInsightsJob::class, [
-                'insights' => $insightsModel
-            ]);
-        }
+        $this->run(StoreInsightsJob::class, [
+            'message' => $this->message
+        ]);
     }
 }

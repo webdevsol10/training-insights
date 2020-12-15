@@ -2,6 +2,8 @@
 
 namespace App\Domains\Redis\Jobs;
 
+use App\Data\Collections\MediaCollection;
+use App\Data\Models\Account;
 use App\Data\Models\Insights;
 use App\Data\Models\Metrics;
 use App\Data\Repositories\InsightsRepository;
@@ -11,18 +13,18 @@ use Illuminate\Support\Facades\Redis;
 class StoreInsightsJob extends Job
 {
     /**
-     * @var Insights
+     * @var array
      */
-    private Insights $insights;
+    private $message;
 
     /**
      * Create a new job instance.
      *
      * @param Insights $insights
      */
-    public function __construct(Insights $insights)
+    public function __construct(array $message)
     {
-        $this->insights = $insights;
+        $this->message = $message;
     }
 
     /**
@@ -36,9 +38,13 @@ class StoreInsightsJob extends Job
     {
         $insightsRepository = app()->make(InsightsRepository::class);
 
-        $username = $this->insights->account->username;
-        $insightsRepository->storeAccount($this->insights->account, $this->insights->platform);
-        $insightsRepository->storeMedias($this->insights->medias, $this->insights->platform, $username);
-        $insightsRepository->storeMediasMetrics($this->insights->medias, $this->insights->platform, $username);
+        $account = Account::makeFromArray($this->message['insights']['account']);
+        $medias = MediaCollection::makeFromArray($this->message['insights']['content']);
+        $insights = Insights::makeFromQueueMessage((int)$this->message['fetched_at'], $account, $medias);
+
+        $username = $account->username;
+        $insightsRepository->storeAccount($account, $insights->platform);
+        $insightsRepository->storeMedias($medias, $insights->platform, $username);
+        $insightsRepository->storeMediasMetrics($medias, $insights->platform, $username);
     }
 }

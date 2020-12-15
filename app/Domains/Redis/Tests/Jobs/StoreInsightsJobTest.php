@@ -14,20 +14,19 @@ class StoreInsightsJobTest extends TestCase
     public function test_store_insights_job()
     {
         $rawMessage = unserialize(file_get_contents(base_path('tests/resources/insights.txt')));
-        $job = new ValidateQueueMessageJob($rawMessage);
-        $insights = $job->handle();
-
-        $job = new StoreInsightsJob($insights);
+        $job = new StoreInsightsJob($rawMessage);
         $job->handle();
 
-        $username = $insights->account->username;
-        $key = "insights:{$insights->platform}:{$username}:latest:account";
+        $platform = $rawMessage['platform'];
+        $username = $rawMessage['insights']['account']['username'];
+
+        $key = "insights:{$platform}:{$username}:latest:account";
         $this->assertNotNull(Redis::get($key));
 
-        $key = "insights:{$insights->platform}:{$username}:latest:content";
+        $key = "insights:{$platform}:{$username}:latest:content";
         $this->assertNotNull(Redis::get($key));
 
-        $key = "insights:{$insights->platform}:{$username}:content:metrics";
+        $key = "insights:{$platform}:{$username}:content:metrics";
         $this->assertNotNull(Redis::get($key));
     }
 }

@@ -30,9 +30,9 @@ class ValidateQueueMessageJob extends Job
      *
      * @return void
      */
-    public function handle(): ?Insights
+    public function handle(): bool
     {
-        $validator = Validator::make($this->message, [
+        Validator::make($this->message, [
             "username" => "required",
             "platform_id" => "required",
             "platform" => "required",
@@ -41,17 +41,8 @@ class ValidateQueueMessageJob extends Job
             "insights" => "required|array",
             "insights.account" => "required|array",
             "insights.content" => "required|array",
-        ]);
-            //->validate();
+        ])->validate();
 
-//        return true;
-        if ($validator->fails()) {
-            return null;
-        } else {
-            $account = Account::makeFromArray($this->message['insights']['account']);
-            $medias = MediaCollection::makeFromArray($this->message['insights']['content']);
-            $insights = Insights::makeFromQueueMessage((int)$this->message['fetched_at'], $account, $medias);
-            return $insights;
-        }
+        return true;
     }
 }
