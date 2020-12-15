@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'instagram'], function () {
-    Route::get('/{handle}', [InsightsController::class, 'account']);
+    Route::get('/{handle}', [InsightsController::class, 'accountInsights']);
     Route::get('/{handle}/content/insights', [InsightsController::class, 'contentInsights']);
     Route::get('/{handle}/content/metrics', [InsightsController::class, 'contentMetrics']);
 });
