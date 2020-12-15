@@ -21,13 +21,13 @@ class StoreInsightsJobTest extends TestCase
         $job->handle();
 
         $username = $insights->account->username;
-        $key = `insights:{$insights->platform}:{$username}:latest:account`;
+        $key = "insights:{$insights->platform}:{$username}:latest:account";
         $this->assertNotNull(Redis::get($key));
 
-        $key = `insights:{$insights->platform}:{$username}:latest:content`;
+        $key = "insights:{$insights->platform}:{$username}:latest:content";
         $this->assertNotNull(Redis::get($key));
 
-        $key = `insights:{$insights->platform}:{$username}:content:metrics`;
+        $key = "insights:{$insights->platform}:{$username}:content:metrics";
         $this->assertNotNull(Redis::get($key));
     }
 }

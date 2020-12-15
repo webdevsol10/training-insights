@@ -36,19 +36,19 @@ class StoreInsightsJob extends Job
         $account = $this->insights->account;
 
         // Insights
-        $key = `insights:{$this->insights->platform}:{$username}:latest:account`;
+        $key = "insights:{$this->insights->platform}:{$username}:latest:account";
         Redis::set($key, json_encode([
             "following" => $account->following,
             "followers" => $account->followers,
             "media_count" => $account->mediaCount
         ]));
 
-        $key = `insights:{$this->insights->platform}:{$username}:latest:content`;
+        $key = "insights:{$this->insights->platform}:{$username}:latest:content";
         Redis::set($key, json_encode($this->insights->medias->toArray()));
 
         // Metrics
         $metrics = Metrics::makeFromMedias($this->insights->medias);
-        $key = `insights:{$this->insights->platform}:{$username}:content:metrics`;
+        $key = "insights:{$this->insights->platform}:{$username}:content:metrics";
         Redis::set($key, json_encode([
             "avg_likes" => $metrics->avgLikes,
             "avg_comments" => $metrics->avgComments,
