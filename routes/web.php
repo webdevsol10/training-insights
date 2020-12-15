@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InsightsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::group(['prefix' => 'instagram'], function () {
+    Route::get('/{handle}', [InsightsController::class, 'account']);
+    Route::get('/{handle}/content/insights', [InsightsController::class, 'contentInsights']);
+    Route::get('/{handle}/content/metrics', [InsightsController::class, 'contentMetrics']);
 });
