@@ -35,6 +35,7 @@ class FetchContentMetricsJob extends Job
      */
     public function handle()
     {
+        // @TODO respository method
         $key = "insights:{$this->platform}:{$this->handle}:content:metrics";
         return Redis::get($key) ?? '';
     }

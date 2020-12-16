@@ -32,6 +32,7 @@ class FetchAccountInsightsJob extends Job
      */
     public function handle()
     {
+        // @TODO respository method
         $key = "insights:{$this->platform}:{$this->handle}:latest:account";
         return Redis::get($key) ?? '';
     }
