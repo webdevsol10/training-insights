@@ -15,7 +15,7 @@ class InsightsRepository
      * @param string $platform
      * @return bool
      */
-    public function storeAccount(Account $account, string $platform): bool
+    public function storeAccount(string $platform, Account $account): bool
     {
         $key = "insights:{$platform}:{$account->username}:latest:account";
         return Redis::set($key, json_encode([
@@ -31,7 +31,7 @@ class InsightsRepository
      * @param string $username
      * @return mixed
      */
-    public function storeMedias(MediaCollection $medias, string $platform, string $username)
+    public function storeMedias(string $platform, string $username, MediaCollection $medias)
     {
         $key = "insights:{$platform}:{$username}:latest:content";
         return Redis::set($key, json_encode($medias->toArray()));
@@ -43,7 +43,7 @@ class InsightsRepository
      * @param string $username
      * @return mixed
      */
-    public function storeMediasMetrics(Metrics $metrics, string $platform, string $username)
+    public function storeMediasMetrics(string $platform, string $username, Metrics $metrics)
     {
         $key = "insights:{$platform}:{$username}:content:metrics";
         return Redis::set($key, json_encode([
