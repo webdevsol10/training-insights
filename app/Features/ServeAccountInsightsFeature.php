@@ -2,7 +2,7 @@
 
 namespace App\Features;
 
-use App\Domains\Http\Jobs\ServeAccountInsightsJob;
+use App\Domains\Redis\Jobs\FetchAccountInsightsJob;
 use Lucid\Units\Feature;
 use Illuminate\Http\Request;
 
@@ -20,9 +20,9 @@ class ServeAccountInsightsFeature extends Feature
         $this->platform = $platform;
     }
 
-    public function handle(Request $request)
+    public function handle()
     {
-        return $this->run(ServeAccountInsightsJob::class, [
+        return $this->run(FetchAccountInsightsJob::class, [
             'handle' => $this->handle,
             'platform' => $this->platform
         ]);

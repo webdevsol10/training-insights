@@ -19,6 +19,4 @@ class ServeContentMetricsFeatureTest extends TestCase
         $this->assertEquals('', $response->getContent());
         $response->assertStatus(200);
     }
-
-
 }

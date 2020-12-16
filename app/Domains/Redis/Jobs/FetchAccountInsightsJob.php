@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domains\Http\Jobs;
+namespace App\Domains\Redis\Jobs;
 
 use Illuminate\Support\Facades\Redis;
 use Lucid\Units\Job;
 
-class ServeAccountInsightsJob extends Job
+class FetchAccountInsightsJob extends Job
 {
     private $handle;
     /**
