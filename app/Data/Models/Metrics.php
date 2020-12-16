@@ -43,9 +43,9 @@ class Metrics
         }
 
         $videos = $medias->filter(fn($media) => MediaType::VIDEO() === $media->type);
-        $videoViews = $videos->reduce(fn($carry, $video) => $carry + $video->video_views) ?? 0;
-        $likes = $medias->reduce(fn($carry, $media) => $carry + $media->likes);
-        $comments = $medias->reduce(fn($carry, $media) => $carry + $media->comments);
+        $videoViews = $videos->sum('video_views');
+        $likes = $medias->sum('likes');
+        $comments = $medias->sum('comments');
 
         return new self($likes / $count,$comments / $count,$videoViews / $count);
     }
