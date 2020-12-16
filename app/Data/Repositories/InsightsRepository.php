@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Data\Repositories;
-
 
 use App\Data\Collections\MediaCollection;
 use App\Data\Models\Account;
 use App\Data\Models\Metrics;
 use Illuminate\Support\Facades\Redis;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class InsightsRepository
 {

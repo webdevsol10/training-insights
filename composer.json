@@ -18,7 +18,8 @@
         "myclabs/php-enum": "^1.7",
         "vinelab/bowler": "^0.7.0",
         "ext-json": "*",
-        "ext-http": "*"
+        "ext-http": "*",
+        "ext-mongodb": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -7,13 +7,5 @@ Registrator::queue('instagram_insights', 'App\Messaging\Handlers\InstagramInsigh
     'exchangeType'=> 'direct',
     'bindingKeys' => [
         'cleansed.instagram.insights',
-    ],
-    'pasive' => false,
-    'durable' => true,
-    'autoDelete' => false,
-    'deadLetterQueueName' => 'dlx_queue',
-    'deadLetterExchangeName' => 'dlx',
-    'deadLetterExchangeType' => 'direct',
-    'deadLetterRoutingKey' => 'warning',
-    'messageTTL' => null
+    ]
 ]);
