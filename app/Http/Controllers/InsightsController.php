@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Features\ServeAccountInsightsFeature;
 use App\Features\ServeContentInsightsFeature;
-use Illuminate\Http\Request;
+use App\Features\ServeContentMetricsFeature;
+
 use Lucid\Units\Controller;
 
 
@@ -29,6 +30,9 @@ class InsightsController extends Controller
 
     public function contentMetrics($handle)
     {
-
+        return $this->serve(ServeContentMetricsFeature::class, [
+            'handle' => $handle,
+            'platform' => 'instagram'
+        ]);
     }
 }

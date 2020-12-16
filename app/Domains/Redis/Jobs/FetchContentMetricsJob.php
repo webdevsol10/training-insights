@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Domains\Redis\Jobs;
+
+use Illuminate\Support\Facades\Redis;
+use Lucid\Units\Job;
+
+class FetchContentMetricsJob extends Job
+{
+    /**
+     * @var string
+     */
+    private $platform;
+    /**
+     * @var string
+     */
+    private $handle;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct(string $platform, string $handle)
+    {
+        //
+        $this->platform = $platform;
+        $this->handle = $handle;
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        $key = "insights:{$this->platform}:{$this->handle}:content:metrics";
+        return Redis::get($key) ?? '';
+    }
+}
