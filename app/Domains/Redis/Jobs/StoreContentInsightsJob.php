@@ -9,19 +9,11 @@ use Lucid\Units\Job;
 
 class StoreContentInsightsJob extends Job
 {
-    /**
-     * @var string
-     */
-    private $platform;
-    /**
-     * @var string
-     */
-    private $username;
-    /**
-     * @var MediaCollection
-     */
-    private $medias;
+    private string $platform;
 
+    private string $username;
+
+    private MediaCollection $medias;
 
     /**
      * Create a new job instance.

@@ -9,18 +9,11 @@ use Lucid\Units\Job;
 
 class StoreMetricsInsightsJob extends Job
 {
-    /**
-     * @var string
-     */
-    private $platform;
-    /**
-     * @var string
-     */
-    private $username;
-    /**
-     * @var Metrics
-     */
-    private $metrics;
+    private string $platform;
+
+    private string $username;
+
+    private Metrics $metrics;
 
     /**
      * Create a new job instance.

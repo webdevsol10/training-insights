@@ -2,8 +2,6 @@
 
 namespace App\Data\Models;
 
-use InstagramScraper\Model\Account as ScraperAccount;
-
 class Account
 {
     public string $id;

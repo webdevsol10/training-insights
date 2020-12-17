@@ -2,10 +2,10 @@
 
 namespace App\Features;
 
-use App\Data\Collections\MediaCollection;
-use App\Data\Models\Account;
-use App\Data\Models\Insights;
 use App\Data\Models\Metrics;
+use App\Domains\RabbitMQ\Jobs\MakeAccountJob;
+use App\Domains\RabbitMQ\Jobs\MakeInsightsJob;
+use App\Domains\RabbitMQ\Jobs\MakeMediasJob;
 use App\Domains\RabbitMQ\Jobs\ValidateQueueMessageJob;
 use App\Domains\Redis\Jobs\StoreAccountInsightsJob;
 use App\Domains\Redis\Jobs\StoreContentInsightsJob;
@@ -36,9 +36,19 @@ class StoreContentFeature extends Feature
             'message' => $this->message
         ]);
 
-        $account = Account::makeFromArray($this->message['insights']['account']);
-        $medias = MediaCollection::makeFromArray($this->message['insights']['content']);
-        $insights = Insights::makeFromQueueMessage((int)$this->message['fetched_at'], $account, $medias);
+        $account = $this->run(MakeAccountJob::class, [
+            'message' => $this->message
+        ]);
+
+        $medias = $this->run(MakeMediasJob::class, [
+            'message' => $this->message
+        ]);
+
+        $insights = $this->run(MakeInsightsJob::class, [
+            'message' => $this->message,
+            'account' => $account,
+            'medias' => $medias,
+        ]);
 
         // Account
         $this->run(StoreAccountInsightsJob::class, [
