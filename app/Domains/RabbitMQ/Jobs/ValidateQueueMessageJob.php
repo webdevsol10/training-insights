@@ -10,10 +10,7 @@ use Lucid\Units\Job;
 
 class ValidateQueueMessageJob extends Job
 {
-    /**
-     * @var array
-     */
-    private $message;
+    private array $message;
 
     /**
      * Create a new job instance.

@@ -17,7 +17,7 @@ class StoreContentInsightsJobTest extends TestCase
         $medias = MediaCollection::makeFromArray($rawMessage['insights']['content']);
 
         $job = new StoreContentInsightsJob('instagram','third_eye_thirst', $medias);
-        $ret = $job->handle(new InsightsRepository());
+        $ret = $job->handle(app()->make(InsightsRepository::class));
         $this->assertTrue($ret);
     }
 }

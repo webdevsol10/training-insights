@@ -18,7 +18,7 @@ class StoreMetricsInsightsJobTest extends TestCase
 
         $metrics = Metrics::makeFromMedias($medias);
         $job = new StoreMetricsInsightsJob('instagram','third_eye_thirst', $metrics);
-        $ret = $job->handle(new InsightsRepository());
+        $ret = $job->handle(app()->make(InsightsRepository::class));
         $this->assertTrue($ret);
     }
 }

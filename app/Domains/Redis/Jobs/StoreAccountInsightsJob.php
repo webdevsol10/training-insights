@@ -10,14 +10,9 @@ use Lucid\Units\Job;
 
 class StoreAccountInsightsJob extends Job
 {
-    /**
-     * @var string
-     */
-    private $platform;
-    /**
-     * @var Account
-     */
-    private $account;
+    private string $platform;
+
+    private Account $account;
 
     /**
      * Create a new job instance.

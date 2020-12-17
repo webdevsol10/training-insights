@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Redis;
 
 class InsightsRepository
 {
-
     /**
      * @param Account $account
      * @param string $platform
