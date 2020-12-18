@@ -37,15 +37,15 @@ class StoreContentFeature extends Feature
         ]);
 
         $account = $this->run(MakeAccountJob::class, [
-            'message' => $this->message
+            'account' => $this->message['insights']['account']
         ]);
 
         $medias = $this->run(MakeMediasJob::class, [
-            'message' => $this->message
+            'medias' => $this->message['insights']['content']
         ]);
 
         $insights = $this->run(MakeInsightsJob::class, [
-            'message' => $this->message,
+            'fetchedAt' => (int)$this->message['fetched_at'],
             'account' => $account,
             'medias' => $medias,
         ]);

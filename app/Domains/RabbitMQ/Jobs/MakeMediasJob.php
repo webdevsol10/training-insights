@@ -7,16 +7,16 @@ use Lucid\Units\Job;
 
 class MakeMediasJob extends Job
 {
-    private array $message;
+    private array $medias;
 
     /**
      * Create a new job instance.
      *
-     * @param array $message
+     * @param array $medias
      */
-    public function __construct(array $message)
+    public function __construct(array $medias)
     {
-        $this->message = $message;
+        $this->medias = $medias;
     }
 
     /**
@@ -26,6 +26,6 @@ class MakeMediasJob extends Job
      */
     public function handle()
     {
-        return MediaCollection::makeFromArray($this->message['insights']['content']);
+        return MediaCollection::makeFromArray($this->medias);
     }
 }

@@ -9,24 +9,24 @@ use Lucid\Units\Job;
 
 class MakeInsightsJob extends Job
 {
-    private array $message;
-
     private Account $account;
 
     private MediaCollection $medias;
 
+    private int $fetchedAt;
+
     /**
      * Create a new job instance.
      *
-     * @param array $message
+     * @param int $fetchedAt
      * @param Account $account
      * @param MediaCollection $medias
      */
-    public function __construct(array $message, Account $account, MediaCollection $medias)
+    public function __construct(int $fetchedAt, Account $account, MediaCollection $medias)
     {
-        $this->message = $message;
         $this->account = $account;
         $this->medias = $medias;
+        $this->fetchedAt = $fetchedAt;
     }
 
     /**
@@ -36,6 +36,6 @@ class MakeInsightsJob extends Job
      */
     public function handle(): Insights
     {
-        return Insights::makeFromQueueMessage((int)$this->message['fetched_at'], $this->account, $this->medias);
+        return Insights::makeFromAccountAndMedia($this->fetchedAt, $this->account, $this->medias);
     }
 }

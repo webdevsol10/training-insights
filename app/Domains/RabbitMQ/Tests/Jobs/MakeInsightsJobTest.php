@@ -15,16 +15,16 @@ class MakeInsightsJobTest extends TestCase
     {
         $rawMessage = unserialize(file_get_contents(base_path('tests/resources/insights.txt')));
 
-        $j = new MakeAccountJob($rawMessage);
+        $j = new MakeAccountJob($rawMessage['insights']['account']);
         $account = $j->handle();
 
-        $j = new MakeMediasJob($rawMessage);
+        $j = new MakeMediasJob($rawMessage['insights']['content']);
         $medias = $j->handle();
 
-        $j = new MakeInsightsJob($rawMessage, $account, $medias);
+        $j = new MakeInsightsJob((int)$rawMessage['fetched_at'], $account, $medias);
         $insights = $j->handle();
 
-        $testInsights = Insights::makeFromQueueMessage((int)$rawMessage['fetched_at'], $account, $medias);
+        $testInsights = Insights::makeFromAccountAndMedia((int)$rawMessage['fetched_at'], $account, $medias);
         $this->assertEquals($insights, $testInsights);
     }
 }

@@ -7,16 +7,16 @@ use Lucid\Units\Job;
 
 class MakeAccountJob extends Job
 {
-    private array $message;
+    private array $account;
 
     /**
      * Create a new job instance.
      *
-     * @param array $message
+     * @param array $account
      */
-    public function __construct(array $message)
+    public function __construct(array $account)
     {
-        $this->message = $message;
+        $this->account = $account;
     }
 
     /**
@@ -26,6 +26,6 @@ class MakeAccountJob extends Job
      */
     public function handle(): Account
     {
-        return Account::makeFromArray($this->message['insights']['account']);
+        return Account::makeFromArray($this->account);
     }
 }

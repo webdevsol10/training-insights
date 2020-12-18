@@ -33,7 +33,7 @@ class Insights implements JsonSerializable
         $this->medias = $medias;
     }
 
-    public static function makeFromQueueMessage(int $createdAt, Account $account, MediaCollection $medias): self
+    public static function makeFromAccountAndMedia(int $createdAt, Account $account, MediaCollection $medias): self
     {
         return new self(
             $account->username,
