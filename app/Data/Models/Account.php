@@ -38,13 +38,11 @@ class Account
         );
     }
 
-    public function toArray()
+    public function toInsightsArray()
     {
         return [
-            'id' => $this->id,
-            'username' => $this->username,
-            'followers' => $this->followers,
             'following' => $this->following,
+            'followers' => $this->followers,
             'media_count' => $this->mediaCount,
         ];
     }

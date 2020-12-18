@@ -17,11 +17,7 @@ class InsightsRepository
     public function storeAccount(string $platform, Account $account): bool
     {
         $key = "insights:{$platform}:{$account->username}:latest:account";
-        return Redis::set($key, json_encode([
-            "following" => $account->following,
-            "followers" => $account->followers,
-            "media_count" => $account->mediaCount
-        ]));
+        return Redis::set($key, json_encode($account->toInsightsArray()));
     }
 
     /**
@@ -45,10 +41,6 @@ class InsightsRepository
     public function storeMediasMetrics(string $platform, string $username, Metrics $metrics)
     {
         $key = "insights:{$platform}:{$username}:content:metrics";
-        return Redis::set($key, json_encode([
-            "avg_likes" => $metrics->avgLikes,
-            "avg_comments" => $metrics->avgComments,
-            "avg_video_views" => $metrics->avgVideoViews
-        ]));
+        return Redis::set($key, json_encode($metrics->toArray()));
     }
 }

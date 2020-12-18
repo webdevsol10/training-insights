@@ -49,4 +49,16 @@ class Metrics
 
         return new self($likes / $count,$comments / $count,$videoViews / $count);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            "avg_likes" => $this->avgLikes,
+            "avg_comments" => $this->avgComments,
+            "avg_video_views" => $this->avgVideoViews
+        ];
+    }
 }
