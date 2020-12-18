@@ -7,14 +7,9 @@ use Lucid\Units\Job;
 
 class FetchContentInsightsJob extends Job
 {
-    /**
-     * @var string
-     */
-    private $platform;
-    /**
-     * @var string
-     */
-    private $handle;
+    private string $platform;
+
+    private string $handle;
 
     /**
      * Create a new job instance.

@@ -8,11 +8,9 @@ use Illuminate\Http\Request;
 
 class ServeAccountInsightsFeature extends Feature
 {
-    private $handle;
-    /**
-     * @var string
-     */
-    private $platform;
+    private string $handle;
+
+    private string $platform;
 
     public function __construct(string $platform, string $handle)
     {

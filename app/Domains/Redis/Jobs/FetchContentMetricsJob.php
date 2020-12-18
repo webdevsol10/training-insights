@@ -7,23 +7,18 @@ use Lucid\Units\Job;
 
 class FetchContentMetricsJob extends Job
 {
-    /**
-     * @var string
-     */
-    private $platform;
-    /**
-     * @var string
-     */
-    private $handle;
+    private string $platform;
+
+    private string $handle;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param string $platform
+     * @param string $handle
      */
     public function __construct(string $platform, string $handle)
     {
-        //
         $this->platform = $platform;
         $this->handle = $handle;
     }

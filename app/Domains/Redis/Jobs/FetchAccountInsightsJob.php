@@ -7,11 +7,9 @@ use Lucid\Units\Job;
 
 class FetchAccountInsightsJob extends Job
 {
-    private $handle;
-    /**
-     * @var string
-     */
-    private $platform;
+    private string $handle;
+
+    private string $platform;
 
     /**
      * Create a new job instance.

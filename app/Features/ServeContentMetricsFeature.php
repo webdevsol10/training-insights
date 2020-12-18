@@ -8,14 +8,9 @@ use Illuminate\Http\Request;
 
 class ServeContentMetricsFeature extends Feature
 {
-    /**
-     * @var string
-     */
-    private $platform;
-    /**
-     * @var string
-     */
-    private $handle;
+    private string $platform;
+
+    private string $handle;
 
     public function __construct(string $platform, string $handle)
     {
