@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domains\RabbitMQ\Tests\Jobs;
+namespace App\Domains\Talent\Tests\Jobs;
 
 use App\Data\Models\Account;
-use App\Domains\RabbitMQ\Jobs\MakeAccountJob;
+use App\Domains\Talent\Jobs\MakeAccountJob;
 use Tests\TestCase;
 
 class MakeAccountJobTest extends TestCase

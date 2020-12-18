@@ -3,9 +3,7 @@
 namespace App\Domains\Redis\Tests\Jobs;
 
 use App\Data\Collections\MediaCollection;
-use App\Data\Models\Account;
 use App\Data\Repositories\InsightsRepository;
-use App\Domains\Redis\Jobs\StoreAccountInsightsJob;
 use App\Domains\Redis\Jobs\StoreContentInsightsJob;
 use Tests\TestCase;
 

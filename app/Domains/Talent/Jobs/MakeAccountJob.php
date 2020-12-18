@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\RabbitMQ\Jobs;
+namespace App\Domains\Talent\Jobs;
 
 use App\Data\Models\Account;
 use Lucid\Units\Job;

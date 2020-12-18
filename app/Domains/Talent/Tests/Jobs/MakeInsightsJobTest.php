@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Domains\RabbitMQ\Tests\Jobs;
+namespace App\Domains\Talent\Tests\Jobs;
 
 use App\Data\Models\Account;
 use App\Data\Models\Insights;
-use App\Domains\RabbitMQ\Jobs\MakeAccountJob;
-use App\Domains\RabbitMQ\Jobs\MakeInsightsJob;
-use App\Domains\RabbitMQ\Jobs\MakeMediasJob;
+use App\Domains\Talent\Jobs\MakeAccountJob;
+use App\Domains\Talent\Jobs\MakeInsightsJob;
+use App\Domains\Talent\Jobs\MakeMediasJob;
 use Tests\TestCase;
 
 class MakeInsightsJobTest extends TestCase

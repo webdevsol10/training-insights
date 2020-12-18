@@ -2,9 +2,6 @@
 
 namespace App\Domains\RabbitMQ\Jobs;
 
-use App\Data\Collections\MediaCollection;
-use App\Data\Models\Account;
-use App\Data\Models\Insights;
 use Illuminate\Support\Facades\Validator;
 use Lucid\Units\Job;
 

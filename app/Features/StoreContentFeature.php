@@ -3,9 +3,9 @@
 namespace App\Features;
 
 use App\Data\Models\Metrics;
-use App\Domains\RabbitMQ\Jobs\MakeAccountJob;
-use App\Domains\RabbitMQ\Jobs\MakeInsightsJob;
-use App\Domains\RabbitMQ\Jobs\MakeMediasJob;
+use App\Domains\Talent\Jobs\MakeAccountJob;
+use App\Domains\Talent\Jobs\MakeInsightsJob;
+use App\Domains\Talent\Jobs\MakeMediasJob;
 use App\Domains\RabbitMQ\Jobs\ValidateQueueMessageJob;
 use App\Domains\Redis\Jobs\StoreAccountInsightsJob;
 use App\Domains\Redis\Jobs\StoreContentInsightsJob;

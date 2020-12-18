@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\RabbitMQ\Jobs;
+namespace App\Domains\Talent\Jobs;
 
 use App\Data\Collections\MediaCollection;
 use Lucid\Units\Job;

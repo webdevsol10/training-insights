@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Domains\RabbitMQ\Tests\Jobs;
+namespace App\Domains\Talent\Tests\Jobs;
 
 use App\Data\Collections\MediaCollection;
-use App\Domains\RabbitMQ\Jobs\MakeMediasJob;
+
+use App\Domains\Talent\Jobs\MakeMediasJob;
 use Tests\TestCase;
 
 class MakeMediasJobTest extends TestCase
