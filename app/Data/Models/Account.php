@@ -38,7 +38,7 @@ class Account
         );
     }
 
-    public function toInsightsArray()
+    public function toArray()
     {
         return [
             'following' => $this->following,

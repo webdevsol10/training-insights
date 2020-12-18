@@ -17,7 +17,7 @@ class InsightsRepository
     public function storeAccount(string $platform, Account $account): bool
     {
         $key = "insights:{$platform}:{$account->username}:latest:account";
-        return Redis::set($key, json_encode($account->toInsightsArray()));
+        return Redis::set($key, json_encode($account->toArray()));
     }
 
     /**
