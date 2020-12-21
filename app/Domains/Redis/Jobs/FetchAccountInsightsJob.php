@@ -2,6 +2,7 @@
 
 namespace App\Domains\Redis\Jobs;
 
+use App\Data\Repositories\InsightsRepository;
 use Illuminate\Support\Facades\Redis;
 use Lucid\Units\Job;
 
@@ -26,12 +27,12 @@ class FetchAccountInsightsJob extends Job
     /**
      * Execute the job.
      *
+     * @param InsightsRepository $insightsRepository
      * @return void
      */
-    public function handle()
+    public function handle(InsightsRepository $insightsRepository)
     {
         // @TODO respository method
-        $key = "insights:{$this->platform}:{$this->handle}:latest:account";
-        return Redis::get($key) ?? '';
+        return $insightsRepository->getAccount($this->platform, $this->handle);
     }
 }
