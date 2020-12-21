@@ -1,0 +1,1 @@
+{"avg_likes":16104.65,"avg_comments":137.95,"avg_video_views":0}
