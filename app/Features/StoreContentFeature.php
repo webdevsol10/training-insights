@@ -10,6 +10,7 @@ use App\Domains\RabbitMQ\Jobs\ValidateQueueMessageJob;
 use App\Domains\Redis\Jobs\StoreAccountInsightsJob;
 use App\Domains\Redis\Jobs\StoreContentInsightsJob;
 use App\Domains\Redis\Jobs\StoreMetricsInsightsJob;
+use App\Domains\Talent\Jobs\MakeMetricsJob;
 use Lucid\Units\Feature;
 
 
@@ -64,7 +65,10 @@ class StoreContentFeature extends Feature
         ]);
 
         // Metrics
-        $metrics = Metrics::makeFromMedias($medias);
+        $metrics = $this->run(MakeMetricsJob::class, [
+            'medias' => $medias
+        ]);
+
         $this->run(StoreMetricsInsightsJob::class, [
             'platform' => $insights->platform,
             'username' => $account->username,
